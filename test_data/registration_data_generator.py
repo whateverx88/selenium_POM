@@ -1,9 +1,16 @@
 from faker import Faker
+from utils.custom_types import Gender
+import random
 
 class RegistrationDataGenerator:
     def __init__(self):
+        self.GENDER = random.choice([Gender.MALE, Gender.FEMALE])
         self.fake = Faker()
-        self.FIRST_NAME = self.fake.first_name()
+        if self.GENDER == Gender.FEMALE:
+            self.FIRST_NAME = self.fake.first_name_female()
+        else:
+            self.FIRST_NAME = self.fake.first_name_male()
 
 data = RegistrationDataGenerator()
 print(data.FIRST_NAME)
+print(data.GENDER)
